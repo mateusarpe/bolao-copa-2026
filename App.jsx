@@ -89,31 +89,19 @@ const GROUP_GAMES = [
 ];
 
 const KNOWN_RESULTS = {
-  // GRUPO A
+  // Resultados confirmados — API atualiza por cima automaticamente
   A1:{h:2,a:0},A2:{h:2,a:1},A3:{h:1,a:1},A4:{h:1,a:0},A5:{h:0,a:3},A6:{h:1,a:0},
-  // GRUPO B
   B1:{h:1,a:1},B2:{h:1,a:1},B3:{h:4,a:1},B4:{h:6,a:0},B5:{h:2,a:1},B6:{h:3,a:1},
-  // GRUPO C
   C1:{h:1,a:1},C2:{h:0,a:1},C3:{h:0,a:1},C4:{h:3,a:0},C5:{h:0,a:3},C6:{h:4,a:2},
-  // GRUPO D
   D1:{h:4,a:1},D2:{h:2,a:0},D3:{h:0,a:1},D4:{h:2,a:0},D5:{h:3,a:2},D6:{h:0,a:0},
-  // GRUPO E
   E1:{h:7,a:1},E2:{h:1,a:0},E3:{h:2,a:1},E4:{h:0,a:0},E5:{h:2,a:1},E6:{h:0,a:2},
-  // GRUPO F
   F1:{h:2,a:2},F2:{h:5,a:1},F3:{h:0,a:4},F4:{h:5,a:1},F5:{h:1,a:3},F6:{h:1,a:1},
-  // GRUPO G
   G1:{h:1,a:1},G2:{h:2,a:2},G3:{h:0,a:0},G4:{h:1,a:3},
-  // GRUPO H
   H1:{h:0,a:0},H2:{h:1,a:1},H3:{h:4,a:0},H4:{h:2,a:2},
-  // GRUPO I — todos completos
   I1:{h:3,a:1},I2:{h:1,a:4},I3:{h:3,a:0},I4:{h:3,a:2},
-  I5:{h:1,a:4}, // Noruega 1x4 França
-  I6:{h:5,a:0}, // Senegal 5x0 Iraque
-  // GRUPO J
+  I5:{h:1,a:4},I6:{h:5,a:0},
   J1:{h:3,a:0},J2:{h:3,a:1},J3:{h:2,a:0},J4:{h:1,a:2},
-  // GRUPO K
   K1:{h:1,a:1},K2:{h:1,a:3},K3:{h:5,a:0},K4:{h:1,a:0},
-  // GRUPO L
   L1:{h:4,a:2},L2:{h:1,a:0},L3:{h:0,a:0},L4:{h:0,a:1},
 };
 
@@ -955,20 +943,20 @@ function GameCard({game, result, guess, showGuess}) {
   );
 }
 
-function RankingScreen({results, currentUser}) {
+function RankingScreen({results, currentUser, serverDelta}) {
   const ranking = PARTICIPANTS_DATA
     .map(function(p){ return Object.assign({}, p, {pts: calcTotal(p.id, results)}); })
     .sort(function(a,b){ return b.pts - a.pts; });
 
   const medals = ["🥇","🥈","🥉","4º","5º","6º","7º","8º","9º","10º"];
 
-  // Montar objeto de totais e salvar snapshot do dia (só salva uma vez por dia)
+  // Usar delta do servidor (calculado com base nos jogos do dia)
+  // Fallback para localStorage se servidor não retornou delta ainda
   var totalsNow = {};
   ranking.forEach(function(p){ totalsNow[p.id] = p.pts; });
   saveSnapshotIfNeeded(totalsNow);
 
-  // Calcular deltas de todos comparando com snapshot de ontem
-  var deltaMap = calcDeltaMap(totalsNow);
+  var deltaMap = serverDelta || calcDeltaMap(totalsNow);
 
   // Data de hoje formatada
   var brt = new Date(new Date().toLocaleString("en-US",{timeZone:"America/Sao_Paulo"}));
@@ -1310,7 +1298,7 @@ function getDailyKey() {
   var now = new Date();
   var brt = new Date(now.toLocaleString("en-US",{timeZone:"America/Sao_Paulo"}));
   // Se for antes das 3h, considera o dia anterior
-  if(brt.getHours() < 3) {
+  if(brt.getHours() < 12) {
     brt.setDate(brt.getDate()-1);
   }
   return "bolao_snapshot_"+brt.getFullYear()+"_"+(brt.getMonth()+1)+"_"+brt.getDate();
@@ -1396,23 +1384,19 @@ export default function App() {
   const [viewing,setViewing]=useState(null);
   const [lastUpd,setLastUpd]=useState(null);
 
+  const [serverDelta, setServerDelta] = useState(null);
+
   const fetchResults = useCallback(async function() {
     try {
-      const res = await fetch("/.netlify/functions/scores");
+      var res = await fetch("/.netlify/functions/scores");
       if (!res.ok) throw new Error("HTTP " + res.status);
-      const data = await res.json();
+      var data = await res.json();
 
       if (data.results) {
         setResults(function(prev){ return Object.assign({}, prev, data.results); });
       }
-      if (data.today && Array.isArray(data.today)) {
-        setTodayGames(function(prev) {
-          return prev.map(function(g) {
-            var upd = data.today.find(function(t){ return t.id === g.id; });
-            if (upd) return Object.assign({}, g, {status:upd.status, homeScore:upd.h, awayScore:upd.a});
-            return g;
-          });
-        });
+      if (data.delta) {
+        setServerDelta(data.delta);
       }
       setLastUpd(new Date());
     } catch(e) {
@@ -1482,7 +1466,7 @@ export default function App() {
   ].concat(user.isAdmin?[{id:"admin",label:"⚙️",title:"Admin"}]:[]);
 
   function renderContent(){
-    if(tab==="ranking") return <RankingScreen results={results} currentUser={user}/>;
+    if(tab==="ranking") return <RankingScreen results={results} currentUser={user} serverDelta={serverDelta}/>;
     if(tab==="results") return <ResultsScreen results={results} todayGames={todayGames}/>;
     if(tab==="guesses"){
       if(viewing) return <PalpitesDetalhe participant={viewing} results={results} onBack={function(){setViewing(null);}}/>;
