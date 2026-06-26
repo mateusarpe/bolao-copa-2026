@@ -15,80 +15,19 @@ const GAME_SCHEDULE = {
   L1:"2026-06-17T17:00",L2:"2026-06-17T20:00",L3:"2026-06-23T17:00",L4:"2026-06-23T20:00",L5:"2026-06-27T18:00",L6:"2026-06-27T18:00",
 };
 
-// Queries em inglês funcionam melhor no Google
-const GAME_QUERIES = {
-  A1:"Mexico vs South Africa World Cup 2026 score",
-  A2:"South Korea vs Czech Republic World Cup 2026 score",
-  A3:"Czech Republic vs South Africa World Cup 2026 score",
-  A4:"Mexico vs South Korea World Cup 2026 score",
-  A5:"Czech Republic vs Mexico World Cup 2026 score",
-  A6:"South Africa vs South Korea World Cup 2026 score",
-  B1:"Canada vs Bosnia World Cup 2026 score",
-  B2:"Qatar vs Switzerland World Cup 2026 score",
-  B3:"Switzerland vs Bosnia World Cup 2026 score",
-  B4:"Canada vs Qatar World Cup 2026 score",
-  B5:"Switzerland vs Canada World Cup 2026 score",
-  B6:"Bosnia vs Qatar World Cup 2026 score",
-  C1:"Brazil vs Morocco World Cup 2026 score",
-  C2:"Haiti vs Scotland World Cup 2026 score",
-  C3:"Scotland vs Morocco World Cup 2026 score",
-  C4:"Brazil vs Haiti World Cup 2026 score",
-  C5:"Scotland vs Brazil World Cup 2026 score",
-  C6:"Morocco vs Haiti World Cup 2026 score",
-  D1:"USA vs Paraguay World Cup 2026 score",
-  D2:"Australia vs Turkey World Cup 2026 score",
-  D3:"Turkey vs Paraguay World Cup 2026 score",
-  D4:"USA vs Australia World Cup 2026 score",
-  D5:"Turkey vs USA World Cup 2026 score",
-  D6:"Paraguay vs Australia World Cup 2026 score",
-  E1:"Germany vs Curacao World Cup 2026 score",
-  E2:"Ivory Coast vs Ecuador World Cup 2026 score",
-  E3:"Germany vs Ivory Coast World Cup 2026 score",
-  E4:"Ecuador vs Curacao World Cup 2026 score",
-  E5:"Ecuador vs Germany World Cup 2026 score",
-  E6:"Curacao vs Ivory Coast World Cup 2026 score",
-  F1:"Netherlands vs Japan World Cup 2026 score",
-  F2:"Sweden vs Tunisia World Cup 2026 score",
-  F3:"Tunisia vs Japan World Cup 2026 score",
-  F4:"Netherlands vs Sweden World Cup 2026 score",
-  F5:"Tunisia vs Netherlands World Cup 2026 score",
-  F6:"Japan vs Sweden World Cup 2026 score",
-  G1:"Belgium vs Egypt World Cup 2026 score",
-  G2:"Iran vs New Zealand World Cup 2026 score",
-  G3:"Belgium vs Iran World Cup 2026 score",
-  G4:"New Zealand vs Egypt World Cup 2026 score",
-  G5:"New Zealand vs Belgium World Cup 2026 score",
-  G6:"Egypt vs Iran World Cup 2026 score",
-  H1:"Spain vs Cape Verde World Cup 2026 score",
-  H2:"Saudi Arabia vs Uruguay World Cup 2026 score",
-  H3:"Spain vs Saudi Arabia World Cup 2026 score",
-  H4:"Uruguay vs Cape Verde World Cup 2026 score",
-  H5:"Uruguay vs Spain World Cup 2026 score",
-  H6:"Cape Verde vs Saudi Arabia World Cup 2026 score",
-  I1:"France vs Senegal World Cup 2026 score",
-  I2:"Iraq vs Norway World Cup 2026 score",
-  I3:"France vs Iraq World Cup 2026 score",
-  I4:"Norway vs Senegal World Cup 2026 score",
-  I5:"Norway vs France World Cup 2026 score",
-  I6:"Senegal vs Iraq World Cup 2026 score",
-  J1:"Argentina vs Algeria World Cup 2026 score",
-  J2:"Austria vs Jordan World Cup 2026 score",
-  J3:"Argentina vs Austria World Cup 2026 score",
-  J4:"Jordan vs Algeria World Cup 2026 score",
-  J5:"Jordan vs Argentina World Cup 2026 score",
-  J6:"Algeria vs Austria World Cup 2026 score",
-  K1:"Portugal vs DR Congo World Cup 2026 score",
-  K2:"Uzbekistan vs Colombia World Cup 2026 score",
-  K3:"Portugal vs Uzbekistan World Cup 2026 score",
-  K4:"Colombia vs DR Congo World Cup 2026 score",
-  K5:"Colombia vs Portugal World Cup 2026 score",
-  K6:"DR Congo vs Uzbekistan World Cup 2026 score",
-  L1:"England vs Croatia World Cup 2026 score",
-  L2:"Ghana vs Panama World Cup 2026 score",
-  L3:"England vs Ghana World Cup 2026 score",
-  L4:"Panama vs Croatia World Cup 2026 score",
-  L5:"Panama vs England World Cup 2026 score",
-  L6:"Croatia vs Ghana World Cup 2026 score",
+const GAME_NAMES = {
+  A1:"México x África do Sul",A2:"Coreia do Sul x Rep. Tcheca",A3:"Rep. Tcheca x África do Sul",A4:"México x Coreia do Sul",A5:"Rep. Tcheca x México",A6:"África do Sul x Coreia do Sul",
+  B1:"Canadá x Bósnia",B2:"Catar x Suíça",B3:"Suíça x Bósnia",B4:"Canadá x Catar",B5:"Suíça x Canadá",B6:"Bósnia x Catar",
+  C1:"Brasil x Marrocos",C2:"Haiti x Escócia",C3:"Escócia x Marrocos",C4:"Brasil x Haiti",C5:"Escócia x Brasil",C6:"Marrocos x Haiti",
+  D1:"EUA x Paraguai",D2:"Austrália x Turquia",D3:"Turquia x Paraguai",D4:"EUA x Austrália",D5:"Turquia x EUA",D6:"Paraguai x Austrália",
+  E1:"Alemanha x Curaçao",E2:"Costa do Marfim x Equador",E3:"Alemanha x Costa do Marfim",E4:"Equador x Curaçao",E5:"Equador x Alemanha",E6:"Curaçao x Costa do Marfim",
+  F1:"Holanda x Japão",F2:"Suécia x Tunísia",F3:"Tunísia x Japão",F4:"Holanda x Suécia",F5:"Tunísia x Holanda",F6:"Japão x Suécia",
+  G1:"Bélgica x Egito",G2:"Irã x Nova Zelândia",G3:"Bélgica x Irã",G4:"Nova Zelândia x Egito",G5:"Nova Zelândia x Bélgica",G6:"Egito x Irã",
+  H1:"Espanha x Cabo Verde",H2:"Arábia Saudita x Uruguai",H3:"Espanha x Arábia Saudita",H4:"Uruguai x Cabo Verde",H5:"Uruguai x Espanha",H6:"Cabo Verde x Arábia Saudita",
+  I1:"França x Senegal",I2:"Iraque x Noruega",I3:"França x Iraque",I4:"Noruega x Senegal",I5:"Noruega x França",I6:"Senegal x Iraque",
+  J1:"Argentina x Argélia",J2:"Áustria x Jordânia",J3:"Argentina x Áustria",J4:"Jordânia x Argélia",J5:"Jordânia x Argentina",J6:"Argélia x Áustria",
+  K1:"Portugal x RD Congo",K2:"Uzbequistão x Colômbia",K3:"Portugal x Uzbequistão",K4:"Colômbia x RD Congo",K5:"Colômbia x Portugal",K6:"RD Congo x Uzbequistão",
+  L1:"Inglaterra x Croácia",L2:"Gana x Panamá",L3:"Inglaterra x Gana",L4:"Panamá x Croácia",L5:"Panamá x Inglaterra",L6:"Croácia x Gana",
 };
 
 function gameFinished(gameId) {
@@ -99,141 +38,100 @@ function gameFinished(gameId) {
   return new Date() > endTime;
 }
 
-function fetchUrl(hostname, path) {
+function callAnthropic(body) {
   return new Promise((resolve, reject) => {
+    const bodyStr = JSON.stringify(body);
     const req = https.request({
-      hostname, path, method: 'GET',
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1)' }
+      hostname: 'api.anthropic.com',
+      path: '/v1/messages',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'Content-Length': Buffer.byteLength(bodyStr),
+      }
     }, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve({ status: res.statusCode, body: data }));
+      res.on('end', () => resolve(JSON.parse(data)));
     });
     req.on('error', reject);
-    req.setTimeout(8000, () => { req.destroy(); reject(new Error('timeout')); });
+    req.setTimeout(25000, () => { req.destroy(); reject(new Error('timeout')); });
+    req.write(bodyStr);
     req.end();
   });
 }
 
-function extractScore(text) {
-  // Limpar texto
-  const clean = text.replace(/\n/g, ' ').replace(/\s+/g, ' ');
-
-  // Padrões mais específicos para placares de futebol
-  const patterns = [
-    /(\d{1,2})\s*[-–]\s*(\d{1,2})/g,      // 1-4, 5-0
-    /(\d{1,2})\s*×\s*(\d{1,2})/g,          // 1×4
-    /score[d]?[:\s]+(\d{1,2})[^\d]+(\d{1,2})/gi,
-    /result[:\s]+(\d{1,2})[^\d]+(\d{1,2})/gi,
-    /won\s+(\d{1,2})[^\d]+(\d{1,2})/gi,
-    /(\d{1,2})\s+goals?\s+to\s+(\d{1,2})/gi,
-    /FT[:\s]+(\d{1,2})[^\d]+(\d{1,2})/gi,  // FT: 1-4
-    /full.?time[:\s]+(\d{1,2})[^\d]+(\d{1,2})/gi,
-  ];
-
-  const scores = [];
-  for (const pattern of patterns) {
-    let match;
-    pattern.lastIndex = 0;
-    while ((match = pattern.exec(clean)) !== null) {
-      const h = parseInt(match[1]);
-      const a = parseInt(match[2]);
-      if (h >= 0 && h <= 15 && a >= 0 && a <= 15) {
-        scores.push(`${h}-${a}`);
-      }
-    }
-  }
-
-  if (scores.length === 0) return null;
-
-  const freq = {};
-  scores.forEach(s => freq[s] = (freq[s] || 0) + 1);
-  const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);
-  console.log('Scores encontrados:', sorted.slice(0,5));
-
-  const [h, a] = sorted[0][0].split('-').map(Number);
-  return { h, a };
-}
-
-async function searchScore(gameId) {
-  const API_KEY = process.env.GOOGLE_API_KEY;
-  const CX = process.env.GOOGLE_CX;
-  if (!API_KEY || !CX) return null;
-
-  const query = encodeURIComponent(GAME_QUERIES[gameId] || gameId);
-  const path = `/customsearch/v1?key=${API_KEY}&cx=${CX}&q=${query}&num=5`;
-
-  try {
-    const res = await fetchUrl('www.googleapis.com', path);
-    console.log(`[${gameId}] Status: ${res.status}`);
-
-    const data = JSON.parse(res.body);
-
-    if (data.error) {
-      console.error(`[${gameId}] API Error: ${data.error.code} - ${data.error.message}`);
-      return null;
-    }
-
-    if (!data.items || data.items.length === 0) {
-      console.log(`[${gameId}] Sem resultados`);
-      return null;
-    }
-
-    // Juntar título + snippet + metatags
-    const allText = data.items.map(item => {
-      const meta = item.pagemap && item.pagemap.metatags
-        ? item.pagemap.metatags.map(m => Object.values(m).join(' ')).join(' ')
-        : '';
-      return `${item.title} ${item.snippet} ${meta}`;
-    }).join(' | ');
-
-    console.log(`[${gameId}] Texto (200): ${allText.substring(0, 200)}`);
-
-    const score = extractScore(allText);
-    console.log(`[${gameId}] Resultado: ${score ? `${score.h}-${score.a}` : 'não encontrado'}`);
-    return score;
-
-  } catch(e) {
-    console.error(`[${gameId}] Erro:`, e.message);
-    return null;
-  }
-}
-
 exports.handler = async function(event, context) {
-  // Buscar jogos das últimas 36h que já terminaram
-  const cutoff = new Date(Date.now() - 36 * 60 * 60 * 1000);
-  const toSearch = Object.keys(GAME_SCHEDULE).filter(id => {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return { statusCode: 500, body: JSON.stringify({ error: 'ANTHROPIC_API_KEY não configurada' }) };
+  }
+
+  // Jogos encerrados nas últimas 48h
+  const cutoff = new Date(Date.now() - 48 * 60 * 60 * 1000);
+  const finished = Object.keys(GAME_SCHEDULE).filter(id => {
     if (!gameFinished(id)) return false;
     const start = new Date(GAME_SCHEDULE[id] + ':00-03:00');
     return start > cutoff;
   });
 
-  console.log(`Buscando: ${toSearch.join(', ')}`);
-
-  const results = {};
-  const errors = {};
-
-  for (const id of toSearch) {
-    const score = await searchScore(id);
-    if (score) {
-      results[id] = score;
-    } else {
-      errors[id] = 'não encontrado';
-    }
-    await new Promise(r => setTimeout(r, 300));
+  if (finished.length === 0) {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ results: {}, searched: [], timestamp: new Date().toISOString() })
+    };
   }
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-    body: JSON.stringify({
-      results,
-      searched: toSearch,
-      errors,
-      timestamp: new Date().toISOString()
-    })
-  };
+  const gamesList = finished.map(id => `${id}: ${GAME_NAMES[id]}`).join('\n');
+  const now = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+
+  try {
+    const response = await callAnthropic({
+      model: 'claude-haiku-4-5',
+      max_tokens: 1000,
+      system: `Você tem acesso a informações em tempo real sobre a Copa do Mundo 2026.
+Retorne APENAS um objeto JSON com os placares finais dos jogos solicitados.
+Formato: {"A1":{"h":2,"a":0},"B1":{"h":1,"a":1}}
+Onde "h" é gols do time da casa e "a" é gols do visitante.
+Se não souber o placar de algum jogo, omita ele do JSON.
+Retorne APENAS o JSON, sem texto adicional, sem markdown.`,
+      messages: [{
+        role: 'user',
+        content: `Data/hora atual em Brasília: ${now}
+
+Quais são os placares FINAIS destes jogos da Copa do Mundo 2026 que já foram disputados?
+
+${gamesList}
+
+Retorne APENAS o JSON com os placares que você conhece.`
+      }]
+    });
+
+    const text = response.content && response.content[0] && response.content[0].text;
+    if (!text) throw new Error('Resposta vazia da API');
+
+    const clean = text.replace(/```json|```/g, '').trim();
+    const results = JSON.parse(clean);
+
+    console.log('Resultados obtidos:', JSON.stringify(results));
+
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'max-age=60',
+      },
+      body: JSON.stringify({ results, searched: finished, timestamp: new Date().toISOString() })
+    };
+
+  } catch(e) {
+    console.error('Erro:', e.message);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: e.message, results: {} })
+    };
+  }
 };
