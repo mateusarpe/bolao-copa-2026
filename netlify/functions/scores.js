@@ -30,108 +30,156 @@ const GAME_NAMES = {
   L1:"Inglaterra x Croácia",L2:"Gana x Panamá",L3:"Inglaterra x Gana",L4:"Panamá x Croácia",L5:"Panamá x Inglaterra",L6:"Croácia x Gana",
 };
 
+// Palpites completos de todos os participantes
+const GUESSES = {
+  alex:          {A1:{h:2,a:0},A2:{h:1,a:0},A3:{h:0,a:2},A4:{h:2,a:2},A5:{h:0,a:3},A6:{h:1,a:1},B1:{h:1,a:1},B2:{h:0,a:3},B3:{h:2,a:0},B4:{h:1,a:0},B5:{h:1,a:1},B6:{h:1,a:0},C1:{h:2,a:0},C2:{h:0,a:1},C3:{h:0,a:2},C4:{h:3,a:0},C5:{h:0,a:2},C6:{h:2,a:0},D1:{h:0,a:1},D2:{h:0,a:2},D3:{h:1,a:1},D4:{h:1,a:0},D5:{h:0,a:1},D6:{h:2,a:0},E1:{h:3,a:0},E2:{h:2,a:0},E3:{h:1,a:1},E4:{h:2,a:0},E5:{h:0,a:2},E6:{h:0,a:2},F1:{h:2,a:2},F2:{h:2,a:0},F3:{h:0,a:3},F4:{h:2,a:1},F5:{h:1,a:2},F6:{h:2,a:0},G1:{h:2,a:0},G2:{h:1,a:1},G3:{h:2,a:0},G4:{h:0,a:0},G5:{h:0,a:3},G6:{h:1,a:0},H1:{h:4,a:0},H2:{h:2,a:2},H3:{h:2,a:1},H4:{h:2,a:0},H5:{h:1,a:3},H6:{h:0,a:2},I1:{h:1,a:1},I2:{h:0,a:0},I3:{h:2,a:0},I4:{h:0,a:2},I5:{h:0,a:3},I6:{h:2,a:0},J1:{h:3,a:0},J2:{h:1,a:1},J3:{h:2,a:0},J4:{h:0,a:1},J5:{h:0,a:2},J6:{h:1,a:1},K1:{h:3,a:0},K2:{h:0,a:2},K3:{h:2,a:0},K4:{h:2,a:0},K5:{h:2,a:2},K6:{h:0,a:0},L1:{h:1,a:1},L2:{h:1,a:1},L3:{h:2,a:0},L4:{h:0,a:2},L5:{h:0,a:3},L6:{h:2,a:1}},
+  alicia:        {A1:{h:2,a:0},A2:{h:1,a:1},A3:{h:2,a:0},A4:{h:1,a:1},A5:{h:1,a:2},A6:{h:0,a:2},B1:{h:1,a:1},B2:{h:0,a:1},B3:{h:2,a:0},B4:{h:3,a:0},B5:{h:1,a:1},B6:{h:2,a:0},C1:{h:2,a:1},C2:{h:0,a:3},C3:{h:0,a:1},C4:{h:4,a:0},C5:{h:1,a:2},C6:{h:2,a:0},D1:{h:2,a:1},D2:{h:2,a:1},D3:{h:0,a:1},D4:{h:3,a:1},D5:{h:1,a:1},D6:{h:2,a:0},E1:{h:3,a:0},E2:{h:1,a:1},E3:{h:2,a:0},E4:{h:2,a:0},E5:{h:1,a:2},E6:{h:0,a:2},F1:{h:2,a:0},F2:{h:1,a:0},F3:{h:0,a:2},F4:{h:2,a:2},F5:{h:1,a:3},F6:{h:1,a:1},G1:{h:2,a:1},G2:{h:2,a:0},G3:{h:1,a:1},G4:{h:0,a:3},G5:{h:0,a:2},G6:{h:1,a:1},H1:{h:3,a:0},H2:{h:0,a:2},H3:{h:4,a:1},H4:{h:2,a:0},H5:{h:1,a:2},H6:{h:1,a:1},I1:{h:3,a:1},I2:{h:0,a:2},I3:{h:3,a:0},I4:{h:1,a:1},I5:{h:1,a:2},I6:{h:2,a:0},J1:{h:3,a:1},J2:{h:2,a:0},J3:{h:2,a:1},J4:{h:0,a:2},J5:{h:0,a:2},J6:{h:1,a:1},K1:{h:3,a:0},K2:{h:0,a:2},K3:{h:2,a:0},K4:{h:2,a:1},K5:{h:2,a:3},K6:{h:1,a:1},L1:{h:2,a:1},L2:{h:1,a:1},L3:{h:2,a:0},L4:{h:0,a:1},L5:{h:0,a:3},L6:{h:2,a:0}},
+  cacia:         {A1:{h:1,a:2},A2:{h:2,a:2},A3:{h:2,a:1},A4:{h:2,a:3},A5:{h:0,a:1},A6:{h:2,a:2},B1:{h:2,a:1},B2:{h:1,a:1},B3:{h:2,a:1},B4:{h:4,a:1},B5:{h:3,a:3},B6:{h:1,a:1},C1:{h:2,a:1},C2:{h:1,a:2},C3:{h:2,a:3},C4:{h:3,a:0},C5:{h:2,a:3},C6:{h:3,a:1},D1:{h:2,a:2},D2:{h:1,a:1},D3:{h:1,a:2},D4:{h:2,a:2},D5:{h:1,a:3},D6:{h:3,a:2},E1:{h:3,a:1},E2:{h:1,a:2},E3:{h:2,a:0},E4:{h:2,a:0},E5:{h:0,a:2},E6:{h:0,a:2},F1:{h:2,a:1},F2:{h:3,a:1},F3:{h:0,a:2},F4:{h:2,a:2},F5:{h:0,a:2},F6:{h:2,a:3},G1:{h:3,a:3},G2:{h:1,a:1},G3:{h:0,a:0},G4:{h:1,a:1},G5:{h:0,a:3},G6:{h:2,a:1},H1:{h:4,a:0},H2:{h:1,a:3},H3:{h:2,a:0},H4:{h:2,a:0},H5:{h:3,a:3},H6:{h:1,a:1},I1:{h:2,a:1},I2:{h:1,a:2},I3:{h:3,a:1},I4:{h:2,a:2},I5:{h:1,a:3},I6:{h:1,a:1},J1:{h:2,a:0},J2:{h:1,a:1},J3:{h:3,a:1},J4:{h:0,a:0},J5:{h:1,a:2},J6:{h:0,a:1},K1:{h:2,a:1},K2:{h:0,a:2},K3:{h:3,a:1},K4:{h:2,a:0},K5:{h:2,a:2},K6:{h:1,a:1},L1:{h:4,a:3},L2:{h:2,a:1},L3:{h:3,a:0},L4:{h:1,a:3},L5:{h:0,a:2},L6:{h:3,a:1}},
+  cecilia:       {A1:{h:3,a:0},A2:{h:1,a:1},A3:{h:2,a:0},A4:{h:2,a:1},A5:{h:0,a:4},A6:{h:0,a:1},B1:{h:3,a:0},B2:{h:0,a:3},B3:{h:4,a:0},B4:{h:2,a:0},B5:{h:0,a:0},B6:{h:1,a:2},C1:{h:2,a:1},C2:{h:0,a:2},C3:{h:0,a:3},C4:{h:4,a:0},C5:{h:1,a:3},C6:{h:1,a:2},D1:{h:3,a:2},D2:{h:1,a:1},D3:{h:0,a:1},D4:{h:3,a:0},D5:{h:0,a:4},D6:{h:3,a:0},E1:{h:5,a:0},E2:{h:1,a:2},E3:{h:2,a:1},E4:{h:3,a:0},E5:{h:0,a:2},E6:{h:0,a:2},F1:{h:3,a:1},F2:{h:2,a:0},F3:{h:1,a:2},F4:{h:2,a:2},F5:{h:0,a:4},F6:{h:1,a:0},G1:{h:4,a:0},G2:{h:1,a:1},G3:{h:2,a:0},G4:{h:0,a:0},G5:{h:0,a:3},G6:{h:0,a:1},H1:{h:6,a:0},H2:{h:0,a:3},H3:{h:4,a:0},H4:{h:2,a:0},H5:{h:2,a:2},H6:{h:1,a:1},I1:{h:5,a:0},I2:{h:0,a:3},I3:{h:3,a:0},I4:{h:2,a:0},I5:{h:1,a:2},I6:{h:2,a:0},J1:{h:2,a:1},J2:{h:0,a:0},J3:{h:1,a:0},J4:{h:1,a:3},J5:{h:0,a:3},J6:{h:0,a:2},K1:{h:4,a:0},K2:{h:0,a:2},K3:{h:3,a:1},K4:{h:2,a:0},K5:{h:1,a:2},K6:{h:0,a:0},L1:{h:0,a:0},L2:{h:1,a:0},L3:{h:2,a:1},L4:{h:0,a:3},L5:{h:0,a:2},L6:{h:1,a:1}},
+  jonas:         {A1:{h:3,a:0},A2:{h:1,a:2},A3:{h:2,a:1},A4:{h:0,a:0},A5:{h:1,a:1},A6:{h:1,a:1},B1:{h:2,a:0},B2:{h:1,a:3},B3:{h:3,a:0},B4:{h:2,a:1},B5:{h:2,a:2},B6:{h:1,a:2},C1:{h:2,a:0},C2:{h:1,a:1},C3:{h:1,a:2},C4:{h:3,a:0},C5:{h:1,a:2},C6:{h:2,a:1},D1:{h:2,a:2},D2:{h:2,a:2},D3:{h:1,a:3},D4:{h:2,a:1},D5:{h:1,a:2},D6:{h:2,a:2},E1:{h:4,a:0},E2:{h:1,a:1},E3:{h:4,a:1},E4:{h:2,a:2},E5:{h:1,a:1},E6:{h:0,a:1},F1:{h:2,a:1},F2:{h:1,a:0},F3:{h:0,a:2},F4:{h:1,a:2},F5:{h:0,a:3},F6:{h:3,a:2},G1:{h:3,a:1},G2:{h:0,a:0},G3:{h:2,a:0},G4:{h:0,a:1},G5:{h:0,a:3},G6:{h:1,a:1},H1:{h:3,a:0},H2:{h:0,a:3},H3:{h:2,a:0},H4:{h:2,a:0},H5:{h:2,a:2},H6:{h:2,a:1},I1:{h:2,a:0},I2:{h:1,a:1},I3:{h:2,a:0},I4:{h:1,a:1},I5:{h:0,a:2},I6:{h:1,a:1},J1:{h:3,a:0},J2:{h:1,a:1},J3:{h:3,a:0},J4:{h:1,a:1},J5:{h:0,a:2},J6:{h:1,a:1},K1:{h:3,a:1},K2:{h:0,a:2},K3:{h:3,a:0},K4:{h:2,a:2},K5:{h:1,a:3},K6:{h:1,a:1},L1:{h:2,a:2},L2:{h:2,a:2},L3:{h:3,a:1},L4:{h:1,a:1},L5:{h:1,a:4},L6:{h:2,a:1}},
+  lucas:         {A1:{h:3,a:1},A2:{h:1,a:1},A3:{h:2,a:2},A4:{h:1,a:1},A5:{h:1,a:1},A6:{h:3,a:2},B1:{h:3,a:2},B2:{h:2,a:3},B3:{h:2,a:2},B4:{h:2,a:2},B5:{h:1,a:1},B6:{h:2,a:1},C1:{h:4,a:1},C2:{h:2,a:1},C3:{h:2,a:2},C4:{h:3,a:0},C5:{h:1,a:2},C6:{h:1,a:2},D1:{h:4,a:2},D2:{h:3,a:2},D3:{h:2,a:2},D4:{h:3,a:2},D5:{h:1,a:3},D6:{h:1,a:2},E1:{h:3,a:0},E2:{h:0,a:2},E3:{h:2,a:1},E4:{h:2,a:1},E5:{h:1,a:2},E6:{h:0,a:2},F1:{h:2,a:1},F2:{h:3,a:2},F3:{h:1,a:1},F4:{h:2,a:2},F5:{h:2,a:1},F6:{h:1,a:2},G1:{h:3,a:1},G2:{h:1,a:2},G3:{h:2,a:0},G4:{h:2,a:1},G5:{h:2,a:3},G6:{h:2,a:1},H1:{h:3,a:0},H2:{h:0,a:1},H3:{h:2,a:0},H4:{h:2,a:1},H5:{h:1,a:2},H6:{h:2,a:2},I1:{h:2,a:1},I2:{h:2,a:3},I3:{h:2,a:0},I4:{h:3,a:1},I5:{h:2,a:2},I6:{h:1,a:1},J1:{h:3,a:1},J2:{h:2,a:1},J3:{h:2,a:0},J4:{h:2,a:2},J5:{h:1,a:2},J6:{h:1,a:0},K1:{h:3,a:1},K2:{h:1,a:2},K3:{h:2,a:0},K4:{h:3,a:1},K5:{h:1,a:2},K6:{h:2,a:1},L1:{h:2,a:1},L2:{h:0,a:2},L3:{h:2,a:2},L4:{h:1,a:2},L5:{h:2,a:1},L6:{h:2,a:2}},
+  mateus:        {A1:{h:2,a:1},A2:{h:1,a:0},A3:{h:1,a:1},A4:{h:2,a:0},A5:{h:0,a:2},A6:{h:1,a:1},B1:{h:1,a:0},B2:{h:0,a:2},B3:{h:1,a:0},B4:{h:1,a:0},B5:{h:2,a:1},B6:{h:0,a:0},C1:{h:2,a:1},C2:{h:0,a:1},C3:{h:0,a:3},C4:{h:3,a:0},C5:{h:0,a:4},C6:{h:3,a:0},D1:{h:1,a:2},D2:{h:2,a:0},D3:{h:0,a:3},D4:{h:1,a:1},D5:{h:2,a:2},D6:{h:3,a:2},E1:{h:3,a:0},E2:{h:0,a:2},E3:{h:2,a:0},E4:{h:3,a:2},E5:{h:1,a:3},E6:{h:0,a:0},F1:{h:2,a:2},F2:{h:1,a:2},F3:{h:0,a:3},F4:{h:3,a:0},F5:{h:0,a:2},F6:{h:3,a:0},G1:{h:3,a:0},G2:{h:1,a:1},G3:{h:2,a:1},G4:{h:1,a:1},G5:{h:0,a:2},G6:{h:0,a:0},H1:{h:4,a:0},H2:{h:0,a:2},H3:{h:2,a:0},H4:{h:3,a:0},H5:{h:2,a:2},H6:{h:0,a:0},I1:{h:3,a:0},I2:{h:0,a:0},I3:{h:3,a:1},I4:{h:2,a:2},I5:{h:2,a:3},I6:{h:0,a:0},J1:{h:3,a:0},J2:{h:1,a:1},J3:{h:2,a:1},J4:{h:0,a:0},J5:{h:1,a:3},J6:{h:1,a:1},K1:{h:2,a:0},K2:{h:1,a:2},K3:{h:3,a:0},K4:{h:2,a:2},K5:{h:2,a:3},K6:{h:1,a:1},L1:{h:2,a:1},L2:{h:1,a:1},L3:{h:3,a:0},L4:{h:0,a:3},L5:{h:0,a:2},L6:{h:2,a:1}},
+  tiago:         {A1:{h:1,a:1},A2:{h:2,a:0},A3:{h:1,a:1},A4:{h:3,a:1},A5:{h:1,a:0},A6:{h:0,a:2},B1:{h:2,a:0},B2:{h:0,a:2},B3:{h:1,a:0},B4:{h:3,a:1},B5:{h:1,a:1},B6:{h:2,a:2},C1:{h:1,a:1},C2:{h:0,a:1},C3:{h:1,a:2},C4:{h:4,a:0},C5:{h:0,a:2},C6:{h:3,a:1},D1:{h:1,a:2},D2:{h:0,a:4},D3:{h:1,a:1},D4:{h:3,a:0},D5:{h:1,a:1},D6:{h:3,a:0},E1:{h:6,a:0},E2:{h:1,a:2},E3:{h:2,a:0},E4:{h:3,a:0},E5:{h:1,a:0},E6:{h:0,a:1},F1:{h:2,a:2},F2:{h:1,a:1},F3:{h:0,a:1},F4:{h:2,a:0},F5:{h:0,a:3},F6:{h:2,a:1},G1:{h:2,a:1},G2:{h:1,a:1},G3:{h:3,a:0},G4:{h:1,a:1},G5:{h:0,a:2},G6:{h:2,a:2},H1:{h:3,a:0},H2:{h:0,a:1},H3:{h:2,a:0},H4:{h:3,a:1},H5:{h:2,a:2},H6:{h:0,a:0},I1:{h:3,a:1},I2:{h:0,a:3},I3:{h:4,a:0},I4:{h:3,a:2},I5:{h:0,a:2},I6:{h:1,a:0},J1:{h:2,a:0},J2:{h:1,a:1},J3:{h:3,a:0},J4:{h:1,a:1},J5:{h:0,a:2},J6:{h:1,a:1},K1:{h:3,a:0},K2:{h:0,a:2},K3:{h:2,a:0},K4:{h:1,a:0},K5:{h:0,a:0},K6:{h:1,a:1},L1:{h:0,a:0},L2:{h:1,a:1},L3:{h:1,a:0},L4:{h:1,a:2},L5:{h:0,a:3},L6:{h:2,a:1}},
+  antonio_carlos:{A1:{h:2,a:0},A2:{h:2,a:1},A3:{h:1,a:1},A4:{h:1,a:1},A5:{h:1,a:1},A6:{h:1,a:1},B1:{h:1,a:1},B2:{h:1,a:1},B3:{h:0,a:0},B4:{h:0,a:0},B5:{h:0,a:0},B6:{h:0,a:0},C1:{h:2,a:1},C2:{h:1,a:2},C3:{h:1,a:1},C4:{h:1,a:1},C5:{h:0,a:0},C6:{h:1,a:1},D1:{h:4,a:1},D2:{h:1,a:0},D3:{h:1,a:1},D4:{h:1,a:1},D5:{h:1,a:1},D6:{h:1,a:1},E1:{h:0,a:0},E2:{h:0,a:0},E3:{h:0,a:0},E4:{h:0,a:0},E5:{h:0,a:0},E6:{h:0,a:0},F1:{h:1,a:1},F2:{h:1,a:1},F3:{h:1,a:1},F4:{h:1,a:1},F5:{h:1,a:1},F6:{h:1,a:1},G1:{h:0,a:0},G2:{h:0,a:0},G3:{h:0,a:0},G4:{h:0,a:0},G5:{h:0,a:0},G6:{h:0,a:0},H1:{h:1,a:1},H2:{h:1,a:1},H3:{h:1,a:1},H4:{h:1,a:1},H5:{h:1,a:1},H6:{h:1,a:1},I1:{h:0,a:0},I2:{h:0,a:0},I3:{h:1,a:1},I4:{h:1,a:1},I5:{h:1,a:1},I6:{h:0,a:0},J1:{h:0,a:0},J2:{h:0,a:0},J3:{h:1,a:1},J4:{h:1,a:1},J5:{h:0,a:0},J6:{h:0,a:0},K1:{h:1,a:1},K2:{h:1,a:1},K3:{h:1,a:1},K4:{h:1,a:1},K5:{h:0,a:0},K6:{h:0,a:0},L1:{h:1,a:1},L2:{h:1,a:1},L3:{h:1,a:1},L4:{h:1,a:1},L5:{h:1,a:1},L6:{h:1,a:1}},
+  teresinha:     {A1:{h:2,a:0},A2:{h:2,a:1},A3:{h:0,a:0},A4:{h:2,a:0},A5:{h:1,a:1},A6:{h:0,a:1},B1:{h:1,a:1},B2:{h:1,a:1},B3:{h:0,a:0},B4:{h:2,a:1},B5:{h:2,a:1},B6:{h:0,a:0},C1:{h:2,a:1},C2:{h:0,a:1},C3:{h:1,a:0},C4:{h:2,a:1},C5:{h:0,a:2},C6:{h:0,a:1},D1:{h:4,a:1},D2:{h:2,a:1},D3:{h:0,a:0},D4:{h:2,a:1},D5:{h:1,a:2},D6:{h:0,a:2},E1:{h:2,a:1},E2:{h:3,a:0},E3:{h:3,a:1},E4:{h:0,a:1},E5:{h:1,a:3},E6:{h:0,a:0},F1:{h:2,a:2},F2:{h:1,a:0},F3:{h:1,a:3},F4:{h:0,a:2},F5:{h:0,a:2},F6:{h:2,a:0},G1:{h:1,a:0},G2:{h:1,a:0},G3:{h:0,a:1},G4:{h:2,a:1},G5:{h:2,a:2},G6:{h:1,a:0},H1:{h:2,a:1},H2:{h:1,a:1},H3:{h:2,a:1},H4:{h:2,a:1},H5:{h:2,a:2},H6:{h:1,a:1},I1:{h:2,a:1},I2:{h:1,a:0},I3:{h:2,a:1},I4:{h:1,a:1},I5:{h:1,a:2},I6:{h:1,a:1},J1:{h:2,a:0},J2:{h:2,a:1},J3:{h:2,a:2},J4:{h:1,a:1},J5:{h:1,a:2},J6:{h:0,a:1},K1:{h:2,a:0},K2:{h:1,a:0},K3:{h:2,a:1},K4:{h:0,a:1},K5:{h:0,a:2},K6:{h:0,a:1},L1:{h:2,a:0},L2:{h:1,a:1},L3:{h:1,a:2},L4:{h:2,a:0},L5:{h:1,a:2},L6:{h:0,a:1}},
+};
+
+const ANTES_C1 = new Set(['A1','A2','B1','D1','B2']);
+
+function calcPoints(guess, result) {
+  if (!guess || !result) return 0;
+  if (guess.h === result.h && guess.a === result.a) return 3;
+  const gw = guess.h > guess.a ? 'H' : guess.h < guess.a ? 'A' : 'D';
+  const rw = result.h > result.a ? 'H' : result.h < result.a ? 'A' : 'D';
+  return gw === rw ? 1 : 0;
+}
+
+function calcTotal(pid, results) {
+  const g = GUESSES[pid];
+  if (!g) return 0;
+  return Object.keys(results).reduce((sum, id) => {
+    if (ANTES_C1.has(id) && (pid === 'antonio_carlos' || pid === 'teresinha')) return sum;
+    return sum + calcPoints(g[id], results[id]);
+  }, 0);
+}
+
+function getBRTDateStr(offsetDays) {
+  const now = new Date();
+  const brt = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+  if (brt.getHours() < 12) brt.setDate(brt.getDate() - 1);
+  if (offsetDays) brt.setDate(brt.getDate() + offsetDays);
+  return `${brt.getFullYear()}-${String(brt.getMonth()+1).padStart(2,'0')}-${String(brt.getDate()).padStart(2,'0')}`;
+}
+
 function gameFinished(gameId) {
   const start = GAME_SCHEDULE[gameId];
   if (!start) return false;
   const startTime = new Date(start + ':00-03:00');
-  const endTime = new Date(startTime.getTime() + 120 * 60 * 1000);
-  return new Date() > endTime;
+  return new Date() > new Date(startTime.getTime() + 120 * 60 * 1000);
 }
 
-function callAnthropic(body) {
+function callAnthropic(prompt) {
   return new Promise((resolve, reject) => {
-    const bodyStr = JSON.stringify(body);
+    const body = JSON.stringify({
+      model: 'claude-haiku-4-5',
+      max_tokens: 1000,
+      system: 'Você conhece os resultados da Copa do Mundo 2026 em tempo real. Retorne APENAS JSON com placares finais. Formato: {"I5":{"h":1,"a":4},"I6":{"h":5,"a":0}}. Sem markdown, sem texto extra.',
+      messages: [{ role: 'user', content: prompt }]
+    });
     const req = https.request({
-      hostname: 'api.anthropic.com',
-      path: '/v1/messages',
-      method: 'POST',
+      hostname: 'api.anthropic.com', path: '/v1/messages', method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
-        'Content-Length': Buffer.byteLength(bodyStr),
+        'Content-Length': Buffer.byteLength(body)
       }
     }, (res) => {
       let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(JSON.parse(data)));
+      res.on('data', c => data += c);
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); } catch(e) { reject(e); }
+      });
     });
     req.on('error', reject);
     req.setTimeout(25000, () => { req.destroy(); reject(new Error('timeout')); });
-    req.write(bodyStr);
+    req.write(body);
     req.end();
   });
 }
 
 exports.handler = async function(event, context) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'ANTHROPIC_API_KEY não configurada' }) };
+    return { statusCode: 500, body: JSON.stringify({ error: 'API key não configurada' }) };
   }
 
   // Jogos encerrados nas últimas 48h
   const cutoff = new Date(Date.now() - 48 * 60 * 60 * 1000);
-  const finished = Object.keys(GAME_SCHEDULE).filter(id => {
+  const toSearch = Object.keys(GAME_SCHEDULE).filter(id => {
     if (!gameFinished(id)) return false;
-    const start = new Date(GAME_SCHEDULE[id] + ':00-03:00');
-    return start > cutoff;
+    return new Date(GAME_SCHEDULE[id] + ':00-03:00') > cutoff;
   });
 
-  if (finished.length === 0) {
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ results: {}, searched: [], timestamp: new Date().toISOString() })
-    };
+  let results = {};
+
+  if (toSearch.length > 0) {
+    const now = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    const lista = toSearch.map(id => `${id}: ${GAME_NAMES[id]}`).join('\n');
+    const prompt = `Data/hora em Brasília: ${now}\n\nRetorne os placares FINAIS destes jogos da Copa 2026 já encerrados:\n${lista}\n\nRetorne APENAS o JSON.`;
+
+    try {
+      const resp = await callAnthropic(prompt);
+      const text = resp.content && resp.content[0] && resp.content[0].text || '{}';
+      results = JSON.parse(text.replace(/```json|```/g, '').trim());
+    } catch(e) {
+      console.error('Erro API:', e.message);
+    }
   }
 
-  const gamesList = finished.map(id => `${id}: ${GAME_NAMES[id]}`).join('\n');
-  const now = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  // Calcular pontos totais de todos com os resultados obtidos
+  const participants = Object.keys(GUESSES);
+  const totals = {};
+  participants.forEach(pid => { totals[pid] = calcTotal(pid, results); });
 
-  try {
-    const response = await callAnthropic({
-      model: 'claude-haiku-4-5',
-      max_tokens: 1000,
-      system: `Você tem acesso a informações em tempo real sobre a Copa do Mundo 2026.
-Retorne APENAS um objeto JSON com os placares finais dos jogos solicitados.
-Formato: {"A1":{"h":2,"a":0},"B1":{"h":1,"a":1}}
-Onde "h" é gols do time da casa e "a" é gols do visitante.
-Se não souber o placar de algum jogo, omita ele do JSON.
-Retorne APENAS o JSON, sem texto adicional, sem markdown.`,
-      messages: [{
-        role: 'user',
-        content: `Data/hora atual em Brasília: ${now}
+  // Calcular delta do dia — jogos que terminaram HOJE (horário Brasília após 3h)
+  const todayStr = getBRTDateStr(0);
+  const todayFinished = Object.keys(GAME_SCHEDULE).filter(id => {
+    if (!gameFinished(id)) return false;
+    const startDate = GAME_SCHEDULE[id].split('T')[0];
+    // Verificar se é jogo de hoje (considerando virador 3h)
+    const brtNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+    const hour = brtNow.getHours();
+    const todayDateStr = hour < 12
+      ? new Date(brtNow.getTime() - 86400000).toISOString().slice(0,10)
+      : brtNow.toISOString().slice(0,10);
+    return startDate === todayDateStr;
+  });
 
-Quais são os placares FINAIS destes jogos da Copa do Mundo 2026 que já foram disputados?
-
-${gamesList}
-
-Retorne APENAS o JSON com os placares que você conhece.`
-      }]
+  // Delta = pontos ganhos nos jogos de hoje
+  const delta = {};
+  participants.forEach(pid => {
+    const g = GUESSES[pid];
+    let d = 0;
+    todayFinished.forEach(id => {
+      if (ANTES_C1.has(id) && (pid === 'antonio_carlos' || pid === 'teresinha')) return;
+      if (results[id] && g && g[id]) d += calcPoints(g[id], results[id]);
     });
+    delta[pid] = d;
+  });
 
-    const text = response.content && response.content[0] && response.content[0].text;
-    if (!text) throw new Error('Resposta vazia da API');
-
-    const clean = text.replace(/```json|```/g, '').trim();
-    const results = JSON.parse(clean);
-
-    console.log('Resultados obtidos:', JSON.stringify(results));
-
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'max-age=60',
-      },
-      body: JSON.stringify({ results, searched: finished, timestamp: new Date().toISOString() })
-    };
-
-  } catch(e) {
-    console.error('Erro:', e.message);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: e.message, results: {} })
-    };
-  }
+  return {
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'max-age=60',
+    },
+    body: JSON.stringify({
+      results,
+      totals,
+      delta,
+      todayGames: todayFinished,
+      timestamp: new Date().toISOString()
+    })
+  };
 };
