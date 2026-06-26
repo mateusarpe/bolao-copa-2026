@@ -89,7 +89,6 @@ const GROUP_GAMES = [
 ];
 
 const KNOWN_RESULTS = {
-  // Resultados confirmados — API atualiza por cima automaticamente
   A1:{h:2,a:0},A2:{h:2,a:1},A3:{h:1,a:1},A4:{h:1,a:0},A5:{h:0,a:3},A6:{h:1,a:0},
   B1:{h:1,a:1},B2:{h:1,a:1},B3:{h:4,a:1},B4:{h:6,a:0},B5:{h:2,a:1},B6:{h:3,a:1},
   C1:{h:1,a:1},C2:{h:0,a:1},C3:{h:0,a:1},C4:{h:3,a:0},C5:{h:0,a:3},C6:{h:4,a:2},
@@ -1389,15 +1388,12 @@ export default function App() {
   const fetchResults = useCallback(async function() {
     try {
       var res = await fetch("/.netlify/functions/scores");
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      if (!res.ok) throw new Error("HTTP "+res.status);
       var data = await res.json();
-
-      if (data.results) {
+      if (data.results && Object.keys(data.results).length > 0) {
         setResults(function(prev){ return Object.assign({}, prev, data.results); });
       }
-      if (data.delta) {
-        setServerDelta(data.delta);
-      }
+      if (data.delta) setServerDelta(data.delta);
       setLastUpd(new Date());
     } catch(e) {
       console.error("Fetch error:", e);
